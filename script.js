@@ -58,6 +58,35 @@ function renderTodos() {
     });
 }
 
+// Dark Mode Toggle Functionality
+function toggleDarkMode() {
+    const body = document.body;
+    const toggle = document.getElementById('darkModeToggle');
+
+    body.classList.toggle('dark-mode');
+
+    // Update button text based on current mode
+    if (body.classList.contains('dark-mode')) {
+        toggle.textContent = '☀️ Light Mode';
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        toggle.textContent = '🌙 Dark Mode';
+        localStorage.setItem('darkMode', 'disabled');
+    }
+}
+
+// Load dark mode preference from localStorage
+function loadDarkModePreference() {
+    const darkMode = localStorage.getItem('darkMode');
+    const body = document.body;
+    const toggle = document.getElementById('darkModeToggle');
+
+    if (darkMode === 'enabled') {
+        body.classList.add('dark-mode');
+        toggle.textContent = '☀️ Light Mode';
+    }
+}
+
 // Allow Enter key to add todo
 document.addEventListener('DOMContentLoaded', function() {
     const input = document.getElementById('todoInput');
@@ -66,4 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
             addTodo();
         }
     });
+
+    // Set up dark mode toggle button
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', toggleDarkMode);
+
+    // Load dark mode preference on page load
+    loadDarkModePreference();
 });
