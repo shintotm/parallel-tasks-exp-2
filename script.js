@@ -40,6 +40,9 @@ function deleteTodo(id) {
     renderTodos();
 }
 
+function clearCompleted() {
+    todos = todos.filter(t => !t.completed);
+    renderTodos();
 function updateActiveCounter() {
     const activeTasks = todos.filter(todo => !todo.completed).length;
     const counter = document.getElementById('activeCounter');
@@ -63,6 +66,10 @@ function renderTodos() {
         todoList.appendChild(li);
     });
 
+    // Show/hide Clear Completed button based on completed tasks
+    const clearBtn = document.getElementById('clearCompletedBtn');
+    const hasCompletedTasks = todos.some(t => t.completed);
+    clearBtn.style.display = hasCompletedTasks ? 'block' : 'none';
     updateActiveCounter();
 }
 

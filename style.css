@@ -82,3 +82,15 @@ button:hover {
 .delete-btn:hover {
     background-color: #da190b;
 }
+
+.clear-completed-btn {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #f44336;
+    padding: 12px 20px;
+    font-size: 16px;
+}
+
+.clear-completed-btn:hover {
+    background-color: #da190b;
+}
