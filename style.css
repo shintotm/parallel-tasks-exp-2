@@ -93,6 +93,60 @@ button:hover {
     background-color: #da190b;
 }
 
+/* Button group container */
+.button-group {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+/* Edit button */
+.edit-btn {
+    background-color: #2196F3;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.edit-btn:hover {
+    background-color: #0b7dda;
+}
+
+/* Save button */
+.save-btn {
+    background-color: #4CAF50;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.save-btn:hover {
+    background-color: #45a049;
+}
+
+/* Cancel button */
+.cancel-btn {
+    background-color: #9e9e9e;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.cancel-btn:hover {
+    background-color: #757575;
+}
+
+/* Edit input field */
+.edit-input {
+    flex: 1;
+    padding: 8px;
+    border: 2px solid #2196F3;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+body.dark-mode .edit-input {
+    background-color: #404040;
+    color: #ffffff;
+    border-color: #2196F3;
 /* Priority Badge Styles */
 .priority-badge {
     display: inline-block;
