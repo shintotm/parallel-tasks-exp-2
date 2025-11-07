@@ -40,6 +40,15 @@ h1 {
     font-size: 16px;
 }
 
+#prioritySelect {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white;
+    cursor: pointer;
+}
+
 button {
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -84,6 +93,30 @@ button:hover {
     background-color: #da190b;
 }
 
+/* Priority Badge Styles */
+.priority-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    margin-right: 10px;
+    text-transform: uppercase;
+}
+
+.priority-high {
+    background-color: #ff4444;
+}
+
+.priority-medium {
+    background-color: #ffaa00;
+}
+
+.priority-low {
+    background-color: #44aa44;
+}
+
 /* Dark Mode Toggle Button */
 .dark-mode-toggle {
     position: absolute;
@@ -118,6 +151,12 @@ body.dark-mode h1 {
 }
 
 body.dark-mode #todoInput {
+    background-color: #404040;
+    color: #ffffff;
+    border-color: #555;
+}
+
+body.dark-mode #prioritySelect {
     background-color: #404040;
     color: #ffffff;
     border-color: #555;

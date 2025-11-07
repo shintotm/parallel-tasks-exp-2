@@ -9,21 +9,25 @@ let todos = [];
 
 function addTodo() {
     const input = document.getElementById('todoInput');
+    const prioritySelect = document.getElementById('prioritySelect');
     const todoText = input.value.trim();
-    
+    const priority = prioritySelect.value;
+
     if (todoText === '') {
         alert('Please enter a task!');
         return;
     }
-    
+
     const todo = {
         id: Date.now(),
         text: todoText,
-        completed: false
+        completed: false,
+        priority: priority
     };
-    
+
     todos.push(todo);
     input.value = '';
+    prioritySelect.value = 'medium'; // Reset to default
     renderTodos();
 }
 
@@ -58,11 +62,16 @@ function renderTodos() {
     todos.forEach(todo => {
         const li = document.createElement('li');
         li.className = 'todo-item' + (todo.completed ? ' completed' : '');
+
+        // Set default priority if not set
+        const priority = todo.priority || 'medium';
+
         li.innerHTML = `
             <input type="checkbox"
                    ${todo.completed ? 'checked' : ''}
                    onchange="toggleTodo(${todo.id})">
-            <span style="margin-left: 10px;">${todo.text}</span>
+            <span class="priority-badge priority-${priority}">${priority}</span>
+            <span>${todo.text}</span>
             <button class="delete-btn" onclick="deleteTodo(${todo.id})">Delete</button>
         `;
         todoList.appendChild(li);
