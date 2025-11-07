@@ -43,6 +43,8 @@ function deleteTodo(id) {
 function clearCompleted() {
     todos = todos.filter(t => !t.completed);
     renderTodos();
+}
+
 function updateActiveCounter() {
     const activeTasks = todos.filter(todo => !todo.completed).length;
     const counter = document.getElementById('activeCounter');
