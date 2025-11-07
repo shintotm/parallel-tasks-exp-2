@@ -150,6 +150,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     darkModeToggle.addEventListener('click', toggleDarkMode);
 
+    // Set up filter button event listeners
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            setFilter(this.dataset.filter);
+        });
+    });
+
     // Load dark mode preference on page load
     loadDarkModePreference();
 });
