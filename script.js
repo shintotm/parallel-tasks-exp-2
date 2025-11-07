@@ -1,4 +1,10 @@
-// Todo app functionality
+/**
+ * File: script.js
+ * Description: Todo list application with add, toggle, and delete functionality
+ * Author: Shinto
+ * Date: November 2025
+ */
+
 let todos = [];
 
 function addTodo() {
