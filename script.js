@@ -149,6 +149,7 @@ function renderTodos() {
             <input type="checkbox"
                    ${todo.completed ? 'checked' : ''}
                    onchange="toggleTodo(${todo.id})">
+            <span class="priority-badge priority-${priority}">${priority}</span>
             <span class="todo-text" style="margin-left: 10px;">${todo.text}</span>
             <input type="text" class="edit-input" value="${todo.text}" style="display: none; margin-left: 10px;">
             <div class="button-group">
@@ -157,9 +158,6 @@ function renderTodos() {
                 <button class="save-btn" onclick="saveEdit(${todo.id})" style="display: none;">Save</button>
                 <button class="cancel-btn" onclick="cancelEdit(${todo.id})" style="display: none;">Cancel</button>
             </div>
-            <span class="priority-badge priority-${priority}">${priority}</span>
-            <span>${todo.text}</span>
-            <button class="delete-btn" onclick="deleteTodo(${todo.id})">Delete</button>
         `;
         todoList.appendChild(li);
     });

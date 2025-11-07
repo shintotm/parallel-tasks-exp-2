@@ -147,6 +147,8 @@ body.dark-mode .edit-input {
     background-color: #404040;
     color: #ffffff;
     border-color: #2196F3;
+}
+
 /* Priority Badge Styles */
 .priority-badge {
     display: inline-block;
