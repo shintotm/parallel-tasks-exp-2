@@ -40,22 +40,30 @@ function deleteTodo(id) {
     renderTodos();
 }
 
+function updateActiveCounter() {
+    const activeTasks = todos.filter(todo => !todo.completed).length;
+    const counter = document.getElementById('activeCounter');
+    counter.textContent = `Active tasks: ${activeTasks}`;
+}
+
 function renderTodos() {
     const todoList = document.getElementById('todoList');
     todoList.innerHTML = '';
-    
+
     todos.forEach(todo => {
         const li = document.createElement('li');
         li.className = 'todo-item' + (todo.completed ? ' completed' : '');
         li.innerHTML = `
-            <input type="checkbox" 
-                   ${todo.completed ? 'checked' : ''} 
+            <input type="checkbox"
+                   ${todo.completed ? 'checked' : ''}
                    onchange="toggleTodo(${todo.id})">
             <span style="margin-left: 10px;">${todo.text}</span>
             <button class="delete-btn" onclick="deleteTodo(${todo.id})">Delete</button>
         `;
         todoList.appendChild(li);
     });
+
+    updateActiveCounter();
 }
 
 // Allow Enter key to add todo
