@@ -43,6 +43,10 @@ function deleteTodo(id) {
 function clearCompleted() {
     todos = todos.filter(t => !t.completed);
     renderTodos();
+function updateActiveCounter() {
+    const activeTasks = todos.filter(todo => !todo.completed).length;
+    const counter = document.getElementById('activeCounter');
+    counter.textContent = `Active tasks: ${activeTasks}`;
 }
 
 function renderTodos() {
@@ -66,6 +70,7 @@ function renderTodos() {
     const clearBtn = document.getElementById('clearCompletedBtn');
     const hasCompletedTasks = todos.some(t => t.completed);
     clearBtn.style.display = hasCompletedTasks ? 'block' : 'none';
+    updateActiveCounter();
 }
 
 // Allow Enter key to add todo
