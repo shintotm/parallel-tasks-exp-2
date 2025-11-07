@@ -20,6 +20,12 @@ h1 {
     text-align: center;
 }
 
+.active-counter {
+    color: gray;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .input-section {
     display: flex;
     gap: 10px;
@@ -133,4 +139,14 @@ body.dark-mode .dark-mode-toggle {
 
 body.dark-mode .dark-mode-toggle:hover {
     background-color: #ddd;
+.clear-completed-btn {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #f44336;
+    padding: 12px 20px;
+    font-size: 16px;
+}
+
+.clear-completed-btn:hover {
+    background-color: #da190b;
 }
