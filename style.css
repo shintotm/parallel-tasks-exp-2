@@ -139,6 +139,8 @@ body.dark-mode .dark-mode-toggle {
 
 body.dark-mode .dark-mode-toggle:hover {
     background-color: #ddd;
+}
+
 .clear-completed-btn {
     width: 100%;
     margin-top: 20px;
@@ -149,4 +151,16 @@ body.dark-mode .dark-mode-toggle:hover {
 
 .clear-completed-btn:hover {
     background-color: #da190b;
+}
+
+.export-todos-btn {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #2196F3;
+    padding: 12px 20px;
+    font-size: 16px;
+}
+
+.export-todos-btn:hover {
+    background-color: #0b7dda;
 }

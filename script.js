@@ -19,7 +19,8 @@ function addTodo() {
     const todo = {
         id: Date.now(),
         text: todoText,
-        completed: false
+        completed: false,
+        timestamp: new Date().toISOString()
     };
     
     todos.push(todo);
@@ -43,6 +44,28 @@ function deleteTodo(id) {
 function clearCompleted() {
     todos = todos.filter(t => !t.completed);
     renderTodos();
+}
+
+function exportTodos() {
+    // Create JSON string with proper formatting
+    const jsonString = JSON.stringify(todos, null, 2);
+
+    // Create a blob from the JSON string
+    const blob = new Blob([jsonString], { type: 'application/json' });
+
+    // Create a temporary download link
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'todos.json';
+
+    // Trigger download
+    document.body.appendChild(link);
+    link.click();
+
+    // Clean up
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 }
 
 function updateActiveCounter() {
