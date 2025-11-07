@@ -19,6 +19,12 @@ h1 {
     text-align: center;
 }
 
+.active-counter {
+    color: gray;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .input-section {
     display: flex;
     gap: 10px;
