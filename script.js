@@ -23,7 +23,7 @@ function addTodo() {
         id: Date.now(),
         text: todoText,
         completed: false,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
         priority: priority
     };
 
@@ -125,6 +125,8 @@ function exportTodos() {
     // Clean up
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+}
+
 function setFilter(filter) {
     currentFilter = filter;
 
