@@ -6,24 +6,29 @@
  */
 
 let todos = [];
+let currentFilter = 'all';
 
 function addTodo() {
     const input = document.getElementById('todoInput');
+    const prioritySelect = document.getElementById('prioritySelect');
     const todoText = input.value.trim();
-    
+    const priority = prioritySelect.value;
+
     if (todoText === '') {
         alert('Please enter a task!');
         return;
     }
-    
+
     const todo = {
         id: Date.now(),
         text: todoText,
-        completed: false
+        completed: false,
+        priority: priority
     };
-    
+
     todos.push(todo);
     input.value = '';
+    prioritySelect.value = 'medium'; // Reset to default
     renderTodos();
 }
 
@@ -99,6 +104,21 @@ function clearCompleted() {
     renderTodos();
 }
 
+function setFilter(filter) {
+    currentFilter = filter;
+
+    // Update active button styling
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.filter === filter) {
+            btn.classList.add('active');
+        }
+    });
+
+    renderTodos();
+}
+
 function updateActiveCounter() {
     const activeTasks = todos.filter(todo => !todo.completed).length;
     const counter = document.getElementById('activeCounter');
@@ -109,10 +129,22 @@ function renderTodos() {
     const todoList = document.getElementById('todoList');
     todoList.innerHTML = '';
 
-    todos.forEach(todo => {
+    // Filter todos based on currentFilter
+    let filteredTodos = todos;
+    if (currentFilter === 'active') {
+        filteredTodos = todos.filter(t => !t.completed);
+    } else if (currentFilter === 'completed') {
+        filteredTodos = todos.filter(t => t.completed);
+    }
+
+    filteredTodos.forEach(todo => {
         const li = document.createElement('li');
         li.className = 'todo-item' + (todo.completed ? ' completed' : '');
         li.setAttribute('data-id', todo.id);
+
+        // Set default priority if not set
+        const priority = todo.priority || 'medium';
+
         li.innerHTML = `
             <input type="checkbox"
                    ${todo.completed ? 'checked' : ''}
@@ -125,6 +157,9 @@ function renderTodos() {
                 <button class="save-btn" onclick="saveEdit(${todo.id})" style="display: none;">Save</button>
                 <button class="cancel-btn" onclick="cancelEdit(${todo.id})" style="display: none;">Cancel</button>
             </div>
+            <span class="priority-badge priority-${priority}">${priority}</span>
+            <span>${todo.text}</span>
+            <button class="delete-btn" onclick="deleteTodo(${todo.id})">Delete</button>
         `;
         todoList.appendChild(li);
     });
@@ -177,6 +212,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up dark mode toggle button
     const darkModeToggle = document.getElementById('darkModeToggle');
     darkModeToggle.addEventListener('click', toggleDarkMode);
+
+    // Set up filter button event listeners
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            setFilter(this.dataset.filter);
+        });
+    });
 
     // Load dark mode preference on page load
     loadDarkModePreference();
