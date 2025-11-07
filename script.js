@@ -1,0 +1,63 @@
+// Todo app functionality
+let todos = [];
+
+function addTodo() {
+    const input = document.getElementById('todoInput');
+    const todoText = input.value.trim();
+    
+    if (todoText === '') {
+        alert('Please enter a task!');
+        return;
+    }
+    
+    const todo = {
+        id: Date.now(),
+        text: todoText,
+        completed: false
+    };
+    
+    todos.push(todo);
+    input.value = '';
+    renderTodos();
+}
+
+function toggleTodo(id) {
+    const todo = todos.find(t => t.id === id);
+    if (todo) {
+        todo.completed = !todo.completed;
+        renderTodos();
+    }
+}
+
+function deleteTodo(id) {
+    todos = todos.filter(t => t.id !== id);
+    renderTodos();
+}
+
+function renderTodos() {
+    const todoList = document.getElementById('todoList');
+    todoList.innerHTML = '';
+    
+    todos.forEach(todo => {
+        const li = document.createElement('li');
+        li.className = 'todo-item' + (todo.completed ? ' completed' : '');
+        li.innerHTML = `
+            <input type="checkbox" 
+                   ${todo.completed ? 'checked' : ''} 
+                   onchange="toggleTodo(${todo.id})">
+            <span style="margin-left: 10px;">${todo.text}</span>
+            <button class="delete-btn" onclick="deleteTodo(${todo.id})">Delete</button>
+        `;
+        todoList.appendChild(li);
+    });
+}
+
+// Allow Enter key to add todo
+document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('todoInput');
+    input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            addTodo();
+        }
+    });
+});
