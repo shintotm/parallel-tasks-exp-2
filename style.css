@@ -300,3 +300,15 @@ body.dark-mode .filter-btn.active {
 .clear-completed-btn:hover {
     background-color: #da190b;
 }
+
+.export-todos-btn {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #2196F3;
+    padding: 12px 20px;
+    font-size: 16px;
+}
+
+.export-todos-btn:hover {
+    background-color: #0b7dda;
+}
